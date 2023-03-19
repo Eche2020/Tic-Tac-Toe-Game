@@ -26,6 +26,8 @@
         </div>
 
     </div>
+    
+<!--  style section of the code    -->
   <style>
 
     body  {
@@ -69,27 +71,31 @@
         background-color: black;
     }
     </style>
+    
+<!--  javascript section   -->
     <script>
         let player = "X";
         
         let moves = 0;
         const cells = document.querySelectorAll(".cell");
 
+//         fetch all the cells and add an event of click
         cells.forEach((cell) => {
             cell.addEventListener("click", cellClicked, {once: true}); 
         });
 
-
+// fetch player when cell is clicked on to make a move
         function cellClicked() {
         this.innerHTML = player;
             moves++;
 
+//             checkwin weather its X or O that won
             checkWin();
-            player = player == "X" ? "O" : "X";
+            player = player == "X" ? "O" : "X"; 
             
         }
 
-        
+//         function to check for a winner from the combination in the arrays
         function checkWin() {
             const winningCombinations = [
                 [1,2,3],
@@ -111,6 +117,7 @@
                 document.getElementById(combo[2]).innerHTML === player
             ) {
     
+//                 alert the DOM when they is a winner
                 alert(player + "Wins!");
                 reset();
                 return;
@@ -122,6 +129,7 @@
             }
          }   
 
+//             function to reset the board after each game be it win draw or lose
          function reset() {
             cells.forEach((cell) => {
                 cell.innerHTML = "";
